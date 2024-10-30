@@ -24,7 +24,7 @@ namespace BlogCore.DataAccess.Data.Repository
             {
                 objFromDb.Name = category.Name;
                 objFromDb.Order = category.Order;
-                _context.SaveChanges();
+                //_context.SaveChanges();
             }
         }
     }
