@@ -1,5 +1,6 @@
 ﻿using BlogCore.DataAccess.Data.Repository.IRepository;
 using BlogCore.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,15 @@ namespace BlogCore.DataAccess.Data.Repository
         public CategoryRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
+        }
+
+        public IEnumerable<SelectListItem> GetCategoryList()
+        {
+            return _context.Categories.Select(c => new SelectListItem()
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+            });
         }
 
         public void Update(Category category)

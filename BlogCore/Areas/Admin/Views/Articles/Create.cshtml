@@ -1,0 +1,70 @@
+﻿@model BlogCore.Models.ViewModels.ArticleViewModel;
+
+@{
+    ViewData["Title"] = "Create new Article";
+}
+
+<br />
+<br />
+
+<h3 class="text-center">Create a new article</h3>
+<form method="POST" asp-action="Create" enctype="multipart/form-data">
+    <div class="row px-2 offset-1 border">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="col-10 offset-1 mt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="article.Name"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="article.Name" class="form-control" placeholder="Name of category" />
+                    <span asp-validation-for="article.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row mt-4">
+                <div class="col-4">
+                    <label asp-for="article.Description"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="article.Description" class="form-control" placeholder="Order of category" />
+                    <span asp-validation-for="article.Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row mt-4">
+                <div class="col-4">
+                    <label for="category">Category</label>
+                </div>
+                <div class="col-6">
+                    @Html.DropDownListFor(m => m.article.CategoryId, Model.categoryList, "-- Please select a category --", new { @class = "form-control"})
+                    <span asp-validation-for="article.CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row mt-4">
+                <div class="col-4">
+                    <label asp-for="article.ImageUrl"></label>
+                </div>
+                <div class="col-6">
+                    <input type="file" name="files" id="imageUpload" class="form-control" />
+                    <span asp-validation-for="article.ImageUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group-row">
+                <div class="col-8">
+                    <partial name="_ViewCreateBack" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,4 +1,5 @@
 ﻿using BlogCore.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace BlogCore.DataAccess.Data.Repository.IRepository
     public interface ICategoryRepository : IRepository<Category>
     {
         void Update(Category category);
+
+        IEnumerable<SelectListItem> GetCategoryList();
 
     }
 }
