@@ -6,20 +6,25 @@ $(document).ready(function () {
 
 function loadDataTable()
 {
-    dataTable = $("#tblArticles").DataTable({
+    dataTable = $("#tblSliders").DataTable({
         "ajax": {
-            "url": "/admin/articles/GetAll",
+            "url": "/admin/sliders/GetAll",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
             { "data": "id", "width": "5%" },
             { "data": "name", "width": "20%" },
-            { "data": "category.name", "width": "15%" },
             {
                 "data": "imageUrl",
                 "render": function (image) {
                     return `<img src="../${image}" width="120px"></img>`
+                }
+            },
+            {
+                "data": "status",
+                "render": function (status) {
+                    return status ? "Active" : "Disabled"
                 }
             },
             { "data": "createdAt", "width": "20%" },
@@ -27,11 +32,11 @@ function loadDataTable()
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                      <a href="/Admin/Articles/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
+                      <a href="/Admin/Sliders/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
                         <i class="far fa-edit"></i> Edit
                       </a>
                     &nbsp;
-                      <a onclick=Delete("/Admin/Articles/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:100px;">
+                      <a onclick=Delete("/Admin/Sliders/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:100px;">
                         <i class="far fa-trash-alt"></i> Delete
                       </a>
                     </div>

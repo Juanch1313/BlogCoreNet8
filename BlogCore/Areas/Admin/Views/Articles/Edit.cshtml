@@ -1,18 +1,21 @@
 ﻿@model BlogCore.Models.ViewModels.ArticleViewModel;
 
 @{
-    ViewData["Title"] = "Create new Article";
+    ViewData["Title"] = "Edit Article";
 }
 
 <br />
 <br />
 
-<h3 class="text-center">Create a new article</h3>
-<form method="POST" asp-action="Create" enctype="multipart/form-data">
-    <div class="row px-2 offset-1 border">
+<h3 class="text-center">Edit article</h3>
+<form method="POST" asp-action="Edit" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="article.Id"/>
+
+    <div class="row px-2 border">
         <div asp-validation-summary="All" class="text-danger"></div>
 
-        <div class="col-10 offset-1 mt-4">
+        <div class="col-8 mt-4">
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="article.Name"></label>
@@ -38,7 +41,7 @@
                     <label for="category">Category</label>
                 </div>
                 <div class="col-6">
-                    @Html.DropDownListFor(m => m.article.CategoryId, Model.categoryList, "-- Please select a category --", new { @class = "form-control"})
+                    @Html.DropDownListFor(m => m.article.CategoryId, Model.categoryList, "-- Please select a category --", new { @class = "form-control" })
                     <span asp-validation-for="article.CategoryId" class="text-danger"></span>
                 </div>
             </div>
@@ -53,11 +56,19 @@
                 </div>
             </div>
 
-            <div class="form-group-row">
-                <div class="col-8">
-                    <partial name="_ViewCreateBack" />
+            <div class="row my-4">  
+                <div class="col">
+                    <button type="submit" class="btn btn-primary form-control">Edit Article</button>
+                </div>
+                &nbsp;
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-success form-control">Go back</a>
                 </div>
             </div>
+        </div>
+
+        <div class="col-4 pt-3">
+            <img src="@Model.article.ImageUrl" width="300px" style="border-radius:5px; border:1px solid #bbb9b9;"/>
         </div>
 
     </div>
@@ -65,7 +76,7 @@
 
 @section Scripts {
     @{
-            <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial" />
     }
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.4.1/tinymce.min.js" integrity="sha512-TDS3vtbiUCZzBBZO8LFud171Hw+ykrQgkrvjwV+i+XsI0LC46PR4affO+9VbgcR79KreoN7J0HKup9mrle4gRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
