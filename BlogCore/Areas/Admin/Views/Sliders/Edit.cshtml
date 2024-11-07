@@ -28,7 +28,7 @@
                     <label asp-for="Status"></label>
                 </div>
                 <div class="col-1">
-                    <input class="from-group" type="checkbox" name="status" value="true" id="sliderStatus" />
+                    <input class="from-group" type="checkbox" asp-for="Status" />
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
             </div>
