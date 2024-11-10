@@ -1,14 +1,14 @@
 ﻿@model BlogCore.Models.Slider;
 
 @{
-    ViewData["Title"] = "Create new Slider";
+    ViewData["Title"] = "Edit Slider";
 }
 
 <br />
 <br />
 
-<h3 class="text-center">Create a new Slider</h3>
-<form method="POST" asp-action="Create" enctype="multipart/form-data">
+<h3 class="text-center">Edit Slider</h3>
+<form method="POST" asp-action="Edit" enctype="multipart/form-data">
     <div class="row px-2 offset-1 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -28,7 +28,7 @@
                     <label asp-for="Status"></label>
                 </div>
                 <div class="col-1">
-                    <input class="from-group" type="checkbox" asp-for="Status"/>
+                    <input class="from-group" type="checkbox" asp-for="Status" />
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
             </div>
