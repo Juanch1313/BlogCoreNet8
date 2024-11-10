@@ -24,7 +24,17 @@ namespace BlogCore.Areas.Client.Controllers
                 SlidersList = _unitOfWork.sliderRepository.GetAll(),
                 ArticlesList = _unitOfWork.articleRepository.GetAll()
             };
+
+            ViewBag.IsHome = true;
+
             return View(homeVm);
+        }
+
+        [HttpGet]
+        public ActionResult Detail(int id)
+        {
+            var articleFromDb = _unitOfWork.articleRepository.Get(id);
+            return View(articleFromDb);
         }
 
         public IActionResult Privacy()
